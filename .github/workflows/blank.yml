@@ -1,0 +1,28 @@
+name: Generate a build and push to another branch
+
+on:
+  push:
+    branches:
+      - dev
+jobs:
+  build:
+    runs-on: ubuntu-latest 
+    name: Build and Push
+    steps:
+      - name: git-checkout
+        uses: actions/checkout@2
+        
+      - name: Install all dependencies
+        run: npm install
+        
+      - name: Build
+        run: npm run build # The build command for the project
+        
+      - name: Push
+        uses: s0/git-publish-subdir-actions@devlop
+        env:
+          REPO: self
+          BRANCH: build
+          FOLDER: dist
+          GITHUB_TOKEN: ${{ secret.HOSTINGER_SECRET }}
+          MESSAGE: 'Build: ({sha}) {The build is successful}' # The commit message 
