@@ -10,7 +10,7 @@ jobs:
     name: Build and Push
     steps:
       - name: git-checkout
-        uses: actions/checkout@2
+        uses: actions/checkout@v2
 
       - name: Install all dependencies
         run: npm install
@@ -19,7 +19,7 @@ jobs:
         run: npm run build # The build command for the project
 
       - name: Push
-        uses: s0/git-publish-subdir-actions@devlop
+        uses: s0/git-publish-subdir-actions@develop
         env:
           REPO: self
           BRANCH: build
