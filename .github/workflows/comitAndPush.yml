@@ -24,5 +24,5 @@ jobs:
           REPO: self
           BRANCH: build
           FOLDER: dist
-          GITHUB_TOKEN: ${{ secret.HOSTINGER_SECRET }}
+          GITHUB_TOKEN: ${{ secrets.HOSTINGER_SECRET }}
           MESSAGE: 'Build: ({sha}) {The build is successful}' # The commit message 
