@@ -19,7 +19,7 @@ jobs:
         run: npm run build # The build command for the project
 
       - name: Push
-        uses: s0/git-publish-subdir-actions@develop
+        uses: s0/git-publish-subdir-action@v2.6.0
         env:
           REPO: self
           BRANCH: build
