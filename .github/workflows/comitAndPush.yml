@@ -13,16 +13,16 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install all dependencies
-        run: npm install
+        run: cd client && npm install
 
       - name: Build
-        run: npm run build # The build command for the project
+        run: cd client && npm run build # The build command for the project
 
       - name: Push
         uses: s0/git-publish-subdir-action@v2.6.0
         env:
           REPO: self
           BRANCH: build
-          FOLDER: dist
+          FOLDER: client/dist
           GITHUB_TOKEN: ${{ secrets.HOSTINGER_SECRET }}
           MESSAGE: 'Build: ({sha}) {The build is successful}' # The commit message 
