@@ -31,12 +31,29 @@ const Customizer = () => {
                 readFile={readFile}
                 />;
             case 'aipicker':
-                return <AIPicker />;
+                return <AIPicker
+                prompt={prompt}
+                setPrompt={setPrompt}
+                generatingImg={generateImg}
+                handleSubmit={handleSubmit}
+                />;
             default:
                 return null;
         }
     }
 
+    const handleSubmit = () => {
+        if(!prompt) return alert('Please enter a prompt');
+
+        try {
+            // call our backend to generate an AI image!
+        } catch (error) {
+            alert(error)
+        } finally {
+            setGenerateImg(false);
+            setActiveEditorTab('');
+        }
+    }
     const handleDecals = (type, result) => {
         const decalType= DecalTypes[type];
         state[decalType.stateProperty] = result;
