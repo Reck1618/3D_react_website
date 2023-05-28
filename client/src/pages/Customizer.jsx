@@ -21,6 +21,10 @@ const Customizer = () => {
     });
     // show tab content depending on the activeTab
     const generateTabContent = () => {
+        if (!isTabContentOpen) {
+            return null;
+        }
+
         switch (activeEditorTab) {
             case 'colorpicker':
                 return <ColorPicker />;
@@ -41,6 +45,8 @@ const Customizer = () => {
                 return null;
         }
     }
+
+    const [isTabContentOpen, setIsTabContentOpen] = useState(false);
 
     const handleSubmit = async (type) => {
         if (!prompt) return alert('Please enter a prompt');
@@ -117,7 +123,16 @@ const Customizer = () => {
                                     <Tab
                                         key={tab.name}
                                         tab={tab}
-                                        handleClick={() => setActiveEditorTab(tab.name)}
+                                        handleClick={() => {
+                                            if (activeEditorTab === tab.name && isTabContentOpen) {
+                                                setIsTabContentOpen(false);
+                                            } else {
+                                                setActiveEditorTab(tab.name);
+                                                setIsTabContentOpen(true);
+                                            }
+                                        }}
+
+
                                     />
                                 ))}
                                 {generateTabContent()}
