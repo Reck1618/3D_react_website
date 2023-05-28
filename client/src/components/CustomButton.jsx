@@ -9,19 +9,19 @@ const CustomButton = ( { type, title, customStyles, handleClick}) => {
     const generateStyle = (type) => {
         if(type === 'filled') {
             return {
-                background: snap.color,
-                color:getContrastingColor(snap.color),
+                background: snap.button_color,
+                color: "#fff",
                 // on hover
                 transition: 'background-color 0.3s ease-in-out',
-                backgroundColor: isHovered ? '#db6b16' : snap.color,
+                backgroundColor: isHovered ? snap.button_hover_color : snap.button_color,
             }
         } else if(type === 'outline') {
             return {
                 borderWidth: '1px',
-                borderColor: snap.color,
-                color: snap.color,
+                borderColor: snap.button_color,
+                color: snap.button_color,
                 transition: 'background-color 0.3s ease-in-out',
-                backgroundColor: isHovered ? '#db6b16' : "transparent"
+                backgroundColor: isHovered ? snap.button_hover_color : "transparent"
             }
         }
     }
