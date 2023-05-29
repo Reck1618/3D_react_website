@@ -1,8 +1,0 @@
-clourinary
-cors
-dotenv
-express
-mongoose
-nodemon
-openai
-```
