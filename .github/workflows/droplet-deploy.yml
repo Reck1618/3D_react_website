@@ -18,7 +18,7 @@ jobs:
         run: cd client && npm install
 
       - name: Build project
-        run: npm run build
+        run: cd client && npm run build
 
       - name: Deploy to Droplet
         uses: appleboy/scp-action@v0.1.5
@@ -26,7 +26,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          source: ./dist/
+          source: ./client/dist/
           target: /var/www/3d-tshirt
 
       - name: Restart Nginx
