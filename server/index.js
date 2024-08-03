@@ -5,7 +5,20 @@ import dalleRoutes from './routes/dalle.routes.js';
 
 dotenv.config();
 const app = express();
-app.use(cors());
+
+const allowedOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : [];
+
+app.use(cors({
+    origin: (origin, callback) => {
+      // Check if the request's origin is in the allowed origins
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    }
+  }));
+
 app.use(express.json({limit: '50mb'}));
 app.use('/api/v1/dalle', dalleRoutes)
 
