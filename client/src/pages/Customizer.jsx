@@ -54,7 +54,15 @@ const Customizer = () => {
         try {
 
             setGenerateImg(true);
-            const response = await fetch('https://project-3js-ai.onrender.com/api/v1/dalle',
+            let backend_url;
+            if (process.env.NODE_ENV === 'production') {
+                backend_url = config.production.backendUrl;
+            }
+            else {
+                backend_url = config.development.backendUrl;
+            }
+
+            const response = await fetch(backend_url,
                 {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
